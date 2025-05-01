@@ -1,0 +1,23 @@
+[project]
+name = "pyetr-api"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "mark-todd",email = "markpeter.todd@hotmail.co.uk"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pyetr (>=1.0.0,<2.0.0)",
+    "fastapi (>=0.115.12,<0.116.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.pyright]
+venvPath="./"
+venv=".venv"
