@@ -3,7 +3,7 @@ from .string_transform import Mode
 from .string_transform import string_to_view as sv
 from .string_transform import view_to_string as vs
 
-def get_pyetr_router(app: FastAPI, mode: Mode = Mode.fol):
+def get_pyetr_router(app: FastAPI, mode: Mode = Mode.simple):
     @app.post("/update/{view1}/{view2}")
     async def update(view1: str, view2: str):
         return vs(sv(view1,mode).update(sv(view2,mode)),mode)
