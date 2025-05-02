@@ -1,0 +1,44 @@
+#!/sbin/openrc-run
+
+# Service name
+name="pyetrapi"
+
+# User and configuration directory
+USER="pyetrapi"
+CONF="/var/lib/pyetrapi"
+PIDFILE="/run/${name}.pid"
+
+# Command and arguments
+command="pyetrapi-backend"
+command_args="-b 127.0.0.1:8005"
+
+# Define the start function
+start() {
+    ebegin "Starting ${name}"
+    
+    # Change to the configuration directory
+    cd "$CONF" || return 1
+    
+    # Activate the virtual environment
+    source pyetr_env/bin/activate
+    
+    # Start the backend process
+    start-stop-daemon --start --background --make-pidfile --pidfile "$PIDFILE" --user "$USER" --chdir "$CONF" --exec $command -- $command_args
+    
+    eend $?
+}
+
+# Define the stop function
+stop() {
+    ebegin "Stopping ${name}"
+    
+    # Stop the backend process
+    start-stop-daemon --stop --pidfile "$PIDFILE"
+    
+    eend $?
+}
+
+# Optional: Define the start_pre function if needed
+start_pre() {
+    checkpath -d "$CONF"
+}
