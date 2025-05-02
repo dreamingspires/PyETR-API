@@ -1,17 +1,13 @@
-[project]
+[tool.poetry]
 name = "pyetr-api"
 version = "0.1.0"
 description = ""
-authors = [
-    {name = "mark-todd",email = "markpeter.todd@hotmail.co.uk"}
-]
 readme = "README.md"
-requires-python = ">=3.11"
-dependencies = [
-    "pyetr (>=1.0.0,<2.0.0)",
-    "fastapi[standard] (>=0.115.12,<0.116.0)",
-    "uvicorn (>=0.34.2,<0.35.0)"
-]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<4.0.0"
+pyetr = ">=1.0.0,<2.0.0"
+fastapi = "^0.115.0"
 
 
 [build-system]
